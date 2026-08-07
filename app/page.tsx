@@ -139,8 +139,8 @@ function Hero() {
             <Image
               src="/humanoid-robot.png"
               alt=""
-              width={578}
-              height={1092}
+              width={576}
+              height={1091}
               priority
               className="h-[76%] w-auto object-contain opacity-30 drop-shadow-[0_40px_80px_rgba(0,0,0,0.55)] sm:h-[85%] sm:opacity-40 lg:mr-[6%] lg:h-[94%] lg:opacity-100"
             />
@@ -283,8 +283,8 @@ function QuoteCanvas() {
               <Image
                 src="/biped-legs.png"
                 alt="Bipedal locomotion platform, student-built legs"
-                width={440}
-                height={983}
+                width={438}
+                height={981}
                 className="h-[420px] w-auto object-contain drop-shadow-[0_32px_64px_rgba(0,0,0,0.55)]"
               />
             </Parallax>
@@ -449,8 +449,8 @@ const LABS: LabData[] = [
     image: {
       src: "/bimanual-rig.png",
       alt: "Bimanual manipulation rig with dual arms and grippers",
-      width: 469,
-      height: 668,
+      width: 466,
+      height: 666,
     },
     items: [
       {
@@ -474,8 +474,8 @@ const LABS: LabData[] = [
     image: {
       src: "/humanoid-standing.png",
       alt: "Open-source humanoid robot, full standing platform",
-      width: 355,
-      height: 1111,
+      width: 356,
+      height: 1115,
     },
     items: [
       {
@@ -514,10 +514,16 @@ const LABS: LabData[] = [
     id: "LAB 06",
     name: "Quadruped Lab",
     glyph: "quadruped",
+    image: {
+      src: "/wheeled-quadruped.png",
+      alt: "Wheeled quadruped robot platform",
+      width: 686,
+      height: 569,
+    },
     items: [
       {
         name: "Open-Source Quadruped",
-        note: "Legged locomotion over unstructured terrain",
+        note: "Wheeled-legged locomotion over real terrain",
         value: "$15,000",
         status: "order",
       },
@@ -527,6 +533,12 @@ const LABS: LabData[] = [
     id: "LAB 07",
     name: "Dexterous Hand Lab",
     glyph: "hand",
+    image: {
+      src: "/dexterous-hand.png",
+      alt: "Five-finger dexterous robotic hand",
+      width: 496,
+      height: 672,
+    },
     items: [
       {
         name: "Open-Source Programmable Hand",
