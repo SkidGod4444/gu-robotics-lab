@@ -118,8 +118,12 @@ export function CountUp({
       if (pad) s = s.padStart(pad, "0");
       return `${prefix}${s}${suffix}`;
     };
-    if (!inView || reduce) {
-      el.textContent = fmt(inView ? to : 0);
+    // Never overwrite the server-rendered final value while waiting —
+    // if the observer misfires (e.g. some mobile browsers), the correct
+    // number stays on screen instead of a stuck 0.
+    if (!inView) return;
+    if (reduce) {
+      el.textContent = fmt(to);
       return;
     }
     const controls = animate(0, to, {

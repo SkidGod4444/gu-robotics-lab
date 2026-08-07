@@ -425,7 +425,6 @@ const LABS: LabData[] = [
         name: "Autonomous Mobile Robot",
         note: "Indoor navigation, mapping and fleet autonomy",
         value: "$8,000",
-        status: "floor",
       },
     ],
   },
@@ -438,7 +437,6 @@ const LABS: LabData[] = [
         name: "Unmanned Ground Vehicle",
         note: "Outdoor platform for field robotics on real terrain",
         value: "$3,000",
-        status: "floor",
       },
     ],
   },
@@ -457,13 +455,11 @@ const LABS: LabData[] = [
         name: "Robotic Arm — 6 DOF",
         note: "Manipulation research — teach & replay to learned policies",
         value: "$1,000",
-        status: "floor",
       },
       {
         name: "OpenArm — 14 DOF",
         note: "Open-source bimanual manipulation platform",
         value: "$6,000",
-        status: "floor",
       },
     ],
   },
@@ -482,31 +478,26 @@ const LABS: LabData[] = [
         name: "Open-Source Humanoid — Miniature",
         note: "Gait and balance research at desk scale",
         value: "$2,500",
-        status: "floor",
       },
       {
         name: "Open-Source Humanoid — Gen 2",
         note: "Full-scale humanoid research platform",
         value: "$15,000",
-        status: "floor",
       },
       {
         name: "Open-Source Humanoid — Gen 3",
         note: "Next-generation build, specification in progress",
         value: "TBD",
-        status: "planning",
       },
       {
         name: "Harmonic Reducers",
         note: "Precision transmissions for humanoid joints",
         value: "$8,000",
-        status: "floor",
       },
       {
         name: "Actuator Inventory",
         note: "High-torque actuators for the next builds",
         value: "≈$8,000",
-        status: "order",
       },
     ],
   },
@@ -525,7 +516,6 @@ const LABS: LabData[] = [
         name: "Open-Source Quadruped",
         note: "Wheeled-legged locomotion over real terrain",
         value: "$15,000",
-        status: "order",
       },
     ],
   },
@@ -544,7 +534,6 @@ const LABS: LabData[] = [
         name: "Open-Source Programmable Hand",
         note: "Fine manipulation and grasping research",
         value: "$4,000",
-        status: "order",
       },
     ],
   },
@@ -600,15 +589,9 @@ function Labs() {
                     prefix="$"
                     className="font-display text-5xl font-extrabold tracking-[-0.02em] text-cream sm:text-6xl"
                   />
-                  <div className="mt-3 flex flex-wrap items-center gap-4">
-                    <p className="font-mono text-[11px] tracking-[0.2em] text-cream/50 uppercase">
-                      Single-system investment
-                    </p>
-                    <span className="inline-flex items-center gap-1.5 bg-cream px-3 py-1.5 font-mono text-[10px] tracking-[0.12em] text-forest uppercase">
-                      <span aria-hidden className="h-1.5 w-1.5 rounded-full bg-forest" />
-                      On the floor
-                    </span>
-                  </div>
+                  <p className="mt-3 font-mono text-[11px] tracking-[0.2em] text-cream/50 uppercase">
+                    Single-system investment
+                  </p>
                 </div>
               </div>
               <div className="flex justify-center lg:justify-end">

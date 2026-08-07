@@ -15,7 +15,6 @@ export type LabItem = {
   name: string;
   note: string;
   value: string;
-  status: "floor" | "order" | "planning";
 };
 
 export type Glyph = "amr" | "ugv" | "arm" | "humanoid" | "quadruped" | "hand";
@@ -26,19 +25,6 @@ export type LabData = {
   glyph: Glyph;
   items: LabItem[];
   image?: { src: string; alt: string; width: number; height: number };
-};
-
-const STATUS: Record<
-  LabItem["status"],
-  { label: string; chip: string; dot: string }
-> = {
-  floor: { label: "On the floor", chip: "bg-cream text-forest", dot: "bg-forest" },
-  order: { label: "On order", chip: "bg-cream/10 text-cream/75", dot: "bg-cream/60" },
-  planning: {
-    label: "In planning",
-    chip: "bg-cream/5 text-cream/50",
-    dot: "bg-cream/35",
-  },
 };
 
 function GlyphIcon({ glyph }: { glyph: Glyph }) {
@@ -214,18 +200,7 @@ export default function LabCard({ lab }: { lab: LabData }) {
                   {item.note}
                 </p>
               </div>
-              <div className="flex flex-col items-end gap-1.5">
-                <p className="font-mono text-sm">{item.value}</p>
-                <span
-                  className={`inline-flex items-center gap-1.5 px-2.5 py-1 font-mono text-[10px] tracking-[0.12em] uppercase ${STATUS[item.status].chip}`}
-                >
-                  <span
-                    aria-hidden
-                    className={`h-1.5 w-1.5 rounded-full ${STATUS[item.status].dot}`}
-                  />
-                  {STATUS[item.status].label}
-                </span>
-              </div>
+              <p className="font-mono text-sm">{item.value}</p>
             </li>
           ))}
         </ul>
