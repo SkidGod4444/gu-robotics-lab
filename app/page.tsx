@@ -48,7 +48,7 @@ function ArrowPill({
       {children}
       <span
         aria-hidden
-        className={`grid h-8 w-8 place-items-center rounded-full text-sm transition-transform duration-200 group-hover:translate-x-0.5 ${chip[variant]}`}
+        className={`grid h-8 w-8 place-items-center text-sm transition-transform duration-200 group-hover:translate-x-0.5 ${chip[variant]}`}
       >
         →
       </span>
@@ -128,26 +128,29 @@ function Nav() {
 function Hero() {
   return (
     <section className="px-2.5 pt-[78px] sm:px-4 sm:pt-[86px]">
-      <div className="dot-grid relative overflow-hidden rounded-[24px] bg-forest text-cream sm:rounded-[28px]">
+      <div className="dot-grid relative overflow-hidden bg-forest text-cream">
         <div className="hero-glow pointer-events-none absolute inset-0" aria-hidden />
-        {/* exploded humanoid blueprint */}
-        <div aria-hidden className="pointer-events-none absolute inset-0">
-          <Parallax from={18} to={-18} className="h-full w-full">
+        {/* the machine, standing on the right — background layer on mobile */}
+        <div
+          aria-hidden
+          className="pointer-events-none absolute inset-y-0 right-0 w-full lg:w-[46%]"
+        >
+          <Parallax from={26} to={-10} className="flex h-full items-end justify-end">
             <Image
-              src="/humanoid-diagram.png"
+              src="/humanoid-robot.png"
               alt=""
-              fill
+              width={578}
+              height={1092}
               priority
-              sizes="100vw"
-              className="hero-diagram-mask scale-[1.08] object-cover object-center opacity-45"
+              className="h-[76%] w-auto object-contain opacity-30 drop-shadow-[0_40px_80px_rgba(0,0,0,0.55)] sm:h-[85%] sm:opacity-40 lg:mr-[6%] lg:h-[94%] lg:opacity-100"
             />
           </Parallax>
         </div>
-        <div className="relative mx-auto flex max-w-7xl flex-col items-start justify-end px-5 pb-12 pt-32 sm:px-10 sm:pt-40 lg:min-h-[82vh] lg:pb-16 lg:pt-52">
+        <div className="relative mx-auto flex min-h-[72vh] max-w-7xl flex-col items-start justify-end px-5 pb-12 pt-32 sm:px-10 sm:pt-40 lg:min-h-[82vh] lg:pb-16 lg:pt-52">
           <FadeUp>
             <Eyebrow dark>Galgotias University · Greater Noida, India</Eyebrow>
           </FadeUp>
-          <h1 className="mt-6 max-w-3xl font-display text-[2.4rem] font-extrabold leading-[1.02] tracking-[-0.03em] sm:text-6xl lg:text-[4.4rem]">
+          <h1 className="mt-6 max-w-3xl font-display text-[2.4rem] font-extrabold leading-[1.02] tracking-[-0.03em] sm:text-6xl lg:text-[4.4rem] lg:max-w-2xl xl:max-w-3xl">
             <WordReveal text="Building the Next Generation of Physical AI Engineers" />
           </h1>
           <FadeUp delay={0.5}>
@@ -167,7 +170,7 @@ function Hero() {
             </div>
           </FadeUp>
           <p className="absolute bottom-6 right-8 hidden font-mono text-[11px] tracking-[0.18em] text-cream/45 uppercase md:block">
-            FIG. 01 — Open-source humanoid · exploded view
+            FIG. 01 — Open-source humanoid platform
           </p>
         </div>
       </div>
@@ -260,19 +263,35 @@ function Mission() {
 function QuoteCanvas() {
   return (
     <section className="px-2.5 sm:px-4">
-      <div className="dot-grid relative overflow-hidden rounded-[24px] bg-forest text-cream sm:rounded-[28px]">
-        <div className="mx-auto max-w-7xl px-5 py-16 sm:px-10 lg:py-28">
-          <FadeUp>
-            <Eyebrow dark>The Commitment</Eyebrow>
+      <div className="dot-grid relative overflow-hidden bg-forest text-cream">
+        <div className="mx-auto grid max-w-7xl items-center gap-10 px-5 py-16 sm:px-10 lg:grid-cols-[7fr_3fr] lg:py-24">
+          <div>
+            <FadeUp>
+              <Eyebrow dark>The Commitment</Eyebrow>
+            </FadeUp>
+            <blockquote className="mt-10 max-w-4xl border-l-2 border-cream/60 pl-5 font-display text-2xl font-bold leading-[1.15] tracking-[-0.02em] sm:pl-10 sm:text-4xl lg:text-[2.9rem]">
+              <WordReveal text="“Every layer of the machine — from hardware to autonomy — built by student hands, from first principles.”" />
+            </blockquote>
+            <FadeUp delay={0.4}>
+              <p className="mt-10 pl-5 font-mono text-xs tracking-[0.24em] text-cream/60 uppercase sm:pl-10">
+                Physical AI &amp; Robotics Lab — Galgotias University
+              </p>
+            </FadeUp>
+          </div>
+          <FadeUp delay={0.2} className="hidden lg:block">
+            <Parallax from={20} to={-20} className="flex justify-center">
+              <Image
+                src="/biped-legs.png"
+                alt="Bipedal locomotion platform, student-built legs"
+                width={440}
+                height={983}
+                className="h-[420px] w-auto object-contain drop-shadow-[0_32px_64px_rgba(0,0,0,0.55)]"
+              />
+            </Parallax>
           </FadeUp>
-          <blockquote className="mt-10 max-w-4xl border-l-2 border-cream/60 pl-5 font-display text-2xl font-bold leading-[1.15] tracking-[-0.02em] sm:pl-10 sm:text-4xl lg:text-[2.9rem]">
-            <WordReveal text="“Every layer of the machine — from hardware to autonomy — built by student hands, from first principles.”" />
-          </blockquote>
-          <FadeUp delay={0.4}>
-            <p className="mt-10 pl-5 font-mono text-xs tracking-[0.24em] text-cream/60 uppercase sm:pl-10">
-              Physical AI &amp; Robotics Lab — Galgotias University
-            </p>
-          </FadeUp>
+          <p className="pointer-events-none absolute bottom-5 right-8 hidden font-mono text-[10px] tracking-[0.18em] text-cream/40 uppercase lg:block">
+            FIG. 02 — Bipedal locomotion platform
+          </p>
         </div>
       </div>
     </section>
@@ -427,6 +446,12 @@ const LABS: LabData[] = [
     id: "LAB 04",
     name: "Robotic Arm Lab",
     glyph: "arm",
+    image: {
+      src: "/bimanual-rig.png",
+      alt: "Bimanual manipulation rig with dual arms and grippers",
+      width: 469,
+      height: 668,
+    },
     items: [
       {
         name: "Robotic Arm — 6 DOF",
@@ -446,6 +471,12 @@ const LABS: LabData[] = [
     id: "LAB 05",
     name: "Humanoid Lab",
     glyph: "humanoid",
+    image: {
+      src: "/humanoid-standing.png",
+      alt: "Open-source humanoid robot, full standing platform",
+      width: 355,
+      height: 1111,
+    },
     items: [
       {
         name: "Open-Source Humanoid — Miniature",
@@ -524,7 +555,7 @@ function Labs() {
 
         {/* flagship canvas */}
         <FadeUp className="mt-16">
-          <div className="dot-grid relative overflow-hidden rounded-[24px] bg-forest text-cream sm:rounded-[28px]">
+          <div className="dot-grid relative overflow-hidden bg-forest text-cream">
             <div className="hero-glow pointer-events-none absolute inset-0" aria-hidden />
             <div className="relative grid items-center gap-12 px-5 py-10 sm:px-10 lg:grid-cols-[11fr_9fr] lg:py-14">
               <div>
@@ -544,7 +575,7 @@ function Labs() {
                     (spec) => (
                       <span
                         key={spec}
-                        className="rounded-full border border-cream/25 px-3.5 py-1.5 font-mono text-[11px] tracking-wide text-cream/80"
+                        className="border border-cream/25 px-3.5 py-1.5 font-mono text-[11px] tracking-wide text-cream/80"
                       >
                         {spec}
                       </span>
@@ -561,7 +592,7 @@ function Labs() {
                     <p className="font-mono text-[11px] tracking-[0.2em] text-cream/50 uppercase">
                       Single-system investment
                     </p>
-                    <span className="inline-flex items-center gap-1.5 rounded-full bg-cream px-3 py-1.5 font-mono text-[10px] tracking-[0.12em] text-forest uppercase">
+                    <span className="inline-flex items-center gap-1.5 bg-cream px-3 py-1.5 font-mono text-[10px] tracking-[0.12em] text-forest uppercase">
                       <span aria-hidden className="h-1.5 w-1.5 rounded-full bg-forest" />
                       On the floor
                     </span>
@@ -581,7 +612,7 @@ function Labs() {
               </div>
             </div>
             <p className="pointer-events-none absolute bottom-5 right-8 hidden font-mono text-[10px] tracking-[0.18em] text-cream/40 uppercase lg:block">
-              FIG. 02 — HGX H200 8-GPU baseboard
+              FIG. 03 — HGX H200 8-GPU baseboard
             </p>
           </div>
         </FadeUp>
@@ -630,7 +661,7 @@ function Ecosystem() {
 function Contact() {
   return (
     <section id="contact" className="scroll-mt-24 px-2.5 py-14 sm:px-4 lg:py-20">
-      <div className="dot-grid relative overflow-hidden rounded-[24px] bg-forest text-cream sm:rounded-[28px]">
+      <div className="dot-grid relative overflow-hidden bg-forest text-cream">
         <div className="hero-glow pointer-events-none absolute inset-0" aria-hidden />
         <div className="relative mx-auto max-w-7xl px-5 py-16 text-center sm:px-10 lg:py-28">
           <FadeUp>

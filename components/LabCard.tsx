@@ -8,6 +8,7 @@ import {
   useSpring,
   useTransform,
 } from "motion/react";
+import Image from "next/image";
 import { useRef } from "react";
 
 export type LabItem = {
@@ -24,6 +25,7 @@ export type LabData = {
   name: string;
   glyph: Glyph;
   items: LabItem[];
+  image?: { src: string; alt: string; width: number; height: number };
 };
 
 const STATUS: Record<
@@ -147,7 +149,7 @@ export default function LabCard({ lab }: { lab: LabData }) {
         onPointerMove={reduce ? undefined : onPointerMove}
         onPointerLeave={reduce ? undefined : onPointerLeave}
         style={reduce ? undefined : { rotateX: rx, rotateY: ry }}
-        className="dot-grid group relative h-full overflow-hidden rounded-[22px] border border-line bg-forest p-7 text-cream transition-shadow duration-300 hover:shadow-[0_32px_70px_-24px_rgba(15,17,18,0.6)] sm:p-8"
+        className="dot-grid group relative h-full overflow-hidden border border-line bg-forest p-7 text-cream transition-shadow duration-300 hover:shadow-[0_32px_70px_-24px_rgba(15,17,18,0.6)] sm:p-8"
       >
         {/* cursor spotlight */}
         <motion.div
@@ -179,10 +181,26 @@ export default function LabCard({ lab }: { lab: LabData }) {
               {lab.name}
             </h3>
           </div>
-          <span className="grid h-11 w-11 shrink-0 place-items-center rounded-xl border border-line text-cream/60 transition-colors duration-300 group-hover:border-line-strong group-hover:text-cream">
+          <span className="grid h-11 w-11 shrink-0 place-items-center border border-line text-cream/60 transition-colors duration-300 group-hover:border-line-strong group-hover:text-cream">
             <GlyphIcon glyph={lab.glyph} />
           </span>
         </div>
+
+        {lab.image && (
+          <div className="relative mt-6 flex h-52 items-center justify-center">
+            <div
+              aria-hidden
+              className="absolute inset-0 bg-[radial-gradient(240px_150px_at_50%_62%,rgba(255,255,255,0.07),transparent)]"
+            />
+            <Image
+              src={lab.image.src}
+              alt={lab.image.alt}
+              width={lab.image.width}
+              height={lab.image.height}
+              className="relative h-full w-auto object-contain drop-shadow-[0_24px_44px_rgba(0,0,0,0.55)]"
+            />
+          </div>
+        )}
 
         <ul className="relative mt-6 divide-y divide-line border-t border-line">
           {lab.items.map((item) => (
@@ -199,7 +217,7 @@ export default function LabCard({ lab }: { lab: LabData }) {
               <div className="flex flex-col items-end gap-1.5">
                 <p className="font-mono text-sm">{item.value}</p>
                 <span
-                  className={`inline-flex items-center gap-1.5 rounded-full px-2.5 py-1 font-mono text-[10px] tracking-[0.12em] uppercase ${STATUS[item.status].chip}`}
+                  className={`inline-flex items-center gap-1.5 px-2.5 py-1 font-mono text-[10px] tracking-[0.12em] uppercase ${STATUS[item.status].chip}`}
                 >
                   <span
                     aria-hidden

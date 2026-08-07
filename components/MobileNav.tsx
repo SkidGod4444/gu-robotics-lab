@@ -15,7 +15,7 @@ export default function MobileNav({
         aria-expanded={open}
         aria-label={open ? "Close menu" : "Open menu"}
         onClick={() => setOpen((v) => !v)}
-        className="grid h-10 w-10 place-items-center rounded-full border border-line-strong text-cream"
+        className="grid h-10 w-10 place-items-center border border-line-strong text-cream"
       >
         <span className="relative block h-[11px] w-[16px]">
           <span
