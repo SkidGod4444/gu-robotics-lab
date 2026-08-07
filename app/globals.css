@@ -1,0 +1,239 @@
+@import "tailwindcss";
+
+:root {
+  /* light base */
+  --ivory: #fafafa;
+  --ink: #0f1112;
+  --sage: #6b7076;
+  --hairline: rgba(15, 17, 18, 0.12);
+
+  /* dark canvas */
+  --forest: #121316;
+  --forest-2: #1c1e21;
+  --cream: #f5f5f4;
+
+  /* arm HUD aliases (RobotArm draws with these) */
+  --carbon: var(--forest);
+  --panel: var(--forest-2);
+  --fog: var(--cream);
+  --mist: #a6aaad;
+  --hud: #c9cdd0;
+  --line: rgba(245, 245, 244, 0.12);
+  --line-strong: rgba(245, 245, 244, 0.28);
+}
+
+@theme inline {
+  --color-ivory: var(--ivory);
+  --color-ink: var(--ink);
+  --color-sage: var(--sage);
+  --color-hairline: var(--hairline);
+  --color-forest: var(--forest);
+  --color-forest-2: var(--forest-2);
+  --color-cream: var(--cream);
+  --color-mist: var(--mist);
+  --color-line: var(--line);
+  --color-line-strong: var(--line-strong);
+  --font-display: var(--font-archivo), sans-serif;
+  --font-body: var(--font-hanken), sans-serif;
+  --font-mono: var(--font-geist-mono), monospace;
+}
+
+body {
+  background: var(--ivory);
+  color: var(--ink);
+  font-family: var(--font-hanken), sans-serif;
+}
+
+::selection {
+  background: var(--ink);
+  color: var(--ivory);
+}
+
+:focus-visible {
+  outline: 2px solid #8a9095;
+  outline-offset: 3px;
+}
+
+/* instrument-panel dot grid on the dark canvas */
+.dot-grid {
+  background-image: radial-gradient(rgba(245, 246, 240, 0.07) 1px, transparent 1px);
+  background-size: 26px 26px;
+}
+
+/* soft light behind the hero canvas */
+.hero-glow {
+  background: radial-gradient(
+    640px 480px at 72% 42%,
+    rgba(255, 255, 255, 0.07),
+    transparent 70%
+  );
+}
+
+/* platform ticker */
+.marquee {
+  overflow: hidden;
+  white-space: nowrap;
+}
+
+.marquee-track {
+  display: inline-flex;
+  animation: marquee 44s linear infinite;
+}
+
+@keyframes marquee {
+  from {
+    transform: translateX(0);
+  }
+  to {
+    transform: translateX(-50%);
+  }
+}
+
+/* pill buttons */
+.btn-pill {
+  border-radius: 999px;
+  transition:
+    transform 0.18s ease,
+    box-shadow 0.18s ease,
+    background-color 0.18s ease;
+}
+
+.btn-pill:hover {
+  transform: translateY(-2px);
+  box-shadow: 0 12px 32px rgba(15, 17, 18, 0.18);
+}
+
+.btn-pill:active {
+  transform: translateY(0);
+  box-shadow: 0 4px 12px rgba(15, 17, 18, 0.12);
+}
+
+/* card lift */
+.card-lift {
+  box-shadow:
+    0 1px 2px rgba(16, 20, 19, 0.04),
+    0 8px 24px -12px rgba(16, 20, 19, 0.08);
+  transition:
+    transform 0.25s cubic-bezier(0.22, 1, 0.36, 1),
+    box-shadow 0.25s cubic-bezier(0.22, 1, 0.36, 1),
+    border-color 0.25s ease;
+}
+
+.card-lift:hover {
+  transform: translateY(-4px);
+  box-shadow:
+    0 2px 4px rgba(16, 20, 19, 0.05),
+    0 22px 48px -16px rgba(16, 20, 19, 0.16);
+  border-color: rgba(16, 20, 19, 0.22);
+}
+
+/* hero blueprint: keep the text side calm, let the diagram breathe on the right */
+.hero-diagram-mask {
+  -webkit-mask-image: linear-gradient(
+    105deg,
+    rgba(0, 0, 0, 0.3) 0%,
+    rgba(0, 0, 0, 0.55) 35%,
+    black 62%
+  );
+  mask-image: linear-gradient(
+    105deg,
+    rgba(0, 0, 0, 0.3) 0%,
+    rgba(0, 0, 0, 0.55) 35%,
+    black 62%
+  );
+}
+
+/* lab card: viewfinder corners */
+.corner {
+  position: absolute;
+  width: 14px;
+  height: 14px;
+  pointer-events: none;
+  border-color: rgba(245, 245, 244, 0.25);
+  transition:
+    border-color 0.3s ease,
+    top 0.3s ease,
+    right 0.3s ease,
+    bottom 0.3s ease,
+    left 0.3s ease;
+}
+
+.corner-tl { top: 12px; left: 12px; border-top: 1.5px solid; border-left: 1.5px solid; }
+.corner-tr { top: 12px; right: 12px; border-top: 1.5px solid; border-right: 1.5px solid; }
+.corner-bl { bottom: 12px; left: 12px; border-bottom: 1.5px solid; border-left: 1.5px solid; }
+.corner-br { bottom: 12px; right: 12px; border-bottom: 1.5px solid; border-right: 1.5px solid; }
+
+.group:hover .corner { border-color: rgba(245, 245, 244, 0.75); }
+.group:hover .corner-tl { top: 7px; left: 7px; }
+.group:hover .corner-tr { top: 7px; right: 7px; }
+.group:hover .corner-bl { bottom: 7px; left: 7px; }
+.group:hover .corner-br { bottom: 7px; right: 7px; }
+
+/* lab card: scan beam sweep */
+.scan-beam {
+  position: absolute;
+  top: 0;
+  bottom: 0;
+  left: -140px;
+  width: 110px;
+  pointer-events: none;
+  background: linear-gradient(
+    100deg,
+    transparent,
+    rgba(255, 255, 255, 0.07),
+    transparent
+  );
+}
+
+.group:hover .scan-beam {
+  animation: scan-sweep 1s cubic-bezier(0.4, 0, 0.2, 1) forwards;
+}
+
+@keyframes scan-sweep {
+  from {
+    left: -140px;
+  }
+  to {
+    left: 115%;
+  }
+}
+
+@media (prefers-reduced-motion: reduce) {
+  .scan-beam {
+    display: none;
+  }
+  .group:hover .corner-tl,
+  .group:hover .corner-tr,
+  .group:hover .corner-bl,
+  .group:hover .corner-br {
+    top: 12px;
+    left: 12px;
+    right: 12px;
+    bottom: 12px;
+  }
+}
+
+/* soft-edge mask for tickers */
+.marquee-fade {
+  -webkit-mask-image: linear-gradient(
+    to right,
+    transparent,
+    black 12%,
+    black 88%,
+    transparent
+  );
+  mask-image: linear-gradient(to right, transparent, black 12%, black 88%, transparent);
+}
+
+@media (prefers-reduced-motion: reduce) {
+  .marquee-track {
+    animation: none;
+  }
+  .btn-pill,
+  .btn-pill:hover,
+  .btn-pill:active,
+  .card-lift,
+  .card-lift:hover {
+    transform: none;
+  }
+}
